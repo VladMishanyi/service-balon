@@ -1,0 +1,10 @@
+GET http://localhost:8080/trm138/read-all
+Accept: application/json
+
+###
+POST http://localhost:8080/trm138/read-all
+Content-Type: application/json
+
+{}
+
+###
