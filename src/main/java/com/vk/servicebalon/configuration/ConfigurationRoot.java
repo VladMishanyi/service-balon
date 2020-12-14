@@ -15,10 +15,10 @@ import java.util.Date;
 @ComponentScan(basePackages = {"com.vk.servicebalon"})
 public class ConfigurationRoot {
 
-    @Bean
-    public CommonsMultipartResolver multipartResolver() {
-        return new CommonsMultipartResolver();
-    }
+//    @Bean
+//    public CommonsMultipartResolver multipartResolver() {
+//        return new CommonsMultipartResolver();
+//    }
 
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)

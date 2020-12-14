@@ -30,8 +30,9 @@ public class ControllerChain1 {
 
     @Scheduled(fixedRate = 1000)
     private void loop(){
-        if (!chain1.isAlive()){
-            chain1 = new Chain1(taskTRM202);
-        }
+//        if (!chain1.isAlive()){
+//            chain1 = new Chain1(taskTRM202);
+//        }
+        chain1.run();
     }
 }
