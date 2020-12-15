@@ -15,9 +15,12 @@ public class DeviceToTableTRM202 {
 
     private final DeviceModelTRM202 deviceModelTRM202;
 
+//    private final TableModelTRM202 tableModelTRM202;
+
     @Autowired
-    public DeviceToTableTRM202(final DeviceModelTRM202 deviceModelTRM202){
+    public DeviceToTableTRM202(final DeviceModelTRM202 deviceModelTRM202/*, final TableModelTRM202 tableModelTRM202*/){
         this.deviceModelTRM202 = deviceModelTRM202;
+//        this.tableModelTRM202 = tableModelTRM202;
     }
 
     public TableModelTRM202 convert(){

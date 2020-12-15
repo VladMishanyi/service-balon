@@ -1,11 +1,10 @@
 package com.vk.servicebalon.configuration;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -21,7 +20,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.vk.servicebalon.table")
+@EnableJpaRepositories(basePackages = "com.vk.servicebalon.repository.database")
 @ComponentScan(basePackages = "com.vk.servicebalon")
 @PropertySource("classpath:databaseFirst.properties")
 public class DatabaseFirstConfig {
@@ -90,15 +89,36 @@ public class DatabaseFirstConfig {
     private String entityPackages;
 
     @Bean
-    public DataSource dataSource() {
-        return DataSourceBuilder
-                .create()
-                .username(this.databaseUsername)
-                .password(this.databasePassword)
-                .url(this.jdbcDriverUrl + "://" + this.hostIp + ":" + this.hostPort + "/" + this.databaseName)
-                .driverClassName(this.jdbcDriver)
-                .build();
+    public DataSource pooledDataSource(HikariConfig config) {
+        return new HikariDataSource(config);
+    }
 
+    @Bean("dataSource")
+    public HikariConfig hikariConfig() {
+        HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setJdbcUrl(this.jdbcDriverUrl + "://" + this.hostIp + ":" + this.hostPort + "/" + this.databaseName);
+        hikariConfig.setUsername(this.databaseUsername);
+        hikariConfig.setPassword(this.databasePassword);
+        hikariConfig.setDriverClassName(this.jdbcDriver);
+        hikariConfig.setMaximumPoolSize(this.initialSize);
+        hikariConfig.setPoolName("springHikariCP");
+        hikariConfig.setConnectionTestQuery(this.validationQuery);
+        return hikariConfig;
+    }
+
+//    @Bean
+//    public DataSource dataSource() {
+//        return DataSourceBuilder
+//                .create()
+//                .username(this.databaseUsername)
+//                .password(this.databasePassword)
+//                .url(this.jdbcDriverUrl + "://" + this.hostIp + ":" + this.hostPort + "/" + this.databaseName)
+//                .driverClassName(this.jdbcDriver)
+//                .build();
+//    }
+
+//    @Bean
+//    public DataSource dataSource() {
 //        final BasicDataSource dataSource = new BasicDataSource();
 //        dataSource.setDriverClassName(this.jdbcDriver);
 //        dataSource.setUrl(this.jdbcDriverUrl + "://" + this.hostIp +
@@ -116,7 +136,7 @@ public class DatabaseFirstConfig {
 //        dataSource.setTestOnBorrow(this.testOnBorrow);
 //        dataSource.setValidationQuery(this.validationQuery);
 //        return dataSource;
-    }
+//    }
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {

@@ -6,6 +6,7 @@ import com.serotonin.modbus4j.code.RegisterRange;
 import com.vk.servicebalon.lib.HysComparator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "trm202")
+@Component
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class TableModelTRM202 implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 1L;

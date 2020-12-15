@@ -1,10 +1,40 @@
-GET http://localhost:8080/trm138/read-all
+###
+GET http://localhost:8080/modbus/read-all
 Accept: application/json
 
 ###
-POST http://localhost:8080/trm138/read-all
-Content-Type: application/json
-
-{}
+GET http://localhost:8080/modbus/read-register0
+Accept: application/json
 
 ###
+GET http://localhost:8080/modbus/read-register1
+Accept: application/json
+
+###
+GET http://localhost:8080/database/test
+Accept: application/json
+
+###
+POST http://localhost:8080/modbus/write-register0
+Content-Type: application/json
+
+{"valueFloat": 45.1}
+
+###
+
+###
+POST http://localhost:8080/modbus/write-register1
+Content-Type: application/json
+
+{"valueFloat": 63.7}
+
+###
+
+###
+POST http://localhost:8080/database/range
+Content-Type: application/json
+
+{"from":"2020-12-14T01:00","to":"2020-12-15T16:15"}
+
+###
+

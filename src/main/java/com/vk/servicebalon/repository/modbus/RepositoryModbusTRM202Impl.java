@@ -24,8 +24,6 @@ public class RepositoryModbusTRM202Impl implements RepositoryModbusTRM202{
 
     private final ModbusFloat modbusFloat;
 
-//    public RepositoryModbusTRM202Impl(){}
-
     @Autowired
     public RepositoryModbusTRM202Impl(final ModbusMasterSerialModel modbusMasterSerialFirst,
                                       final DeviceModelTRM202 deviceModelTRM202,
