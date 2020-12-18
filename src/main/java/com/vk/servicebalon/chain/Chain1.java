@@ -23,7 +23,7 @@ public class Chain1 extends Thread{
     @Autowired
     public Chain1(final TaskTRM202 taskTRM202){
         this.taskTRM202 = taskTRM202;
-        this.start();
+//        this.start();
     }
 
         @Override

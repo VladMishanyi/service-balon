@@ -9,6 +9,11 @@ public class DateFromChart {
 
     public DateFromChart(){}
 
+    public DateFromChart(String start, String end) {
+        this.start = start;
+        this.end = end;
+    }
+
     public String getStart() {
         return start;
     }

@@ -1,10 +1,12 @@
 package com.vk.servicebalon.controllers;
 
 import com.vk.servicebalon.device.DeviceModelTRM202;
+import com.vk.servicebalon.json.JsonBodyListForTableModelTRM202;
 import com.vk.servicebalon.modbus.entity.ModbusBodyDateRange;
 import com.vk.servicebalon.service.ServiceTRM202;
 import com.vk.servicebalon.table.TableModelTRM202;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +25,16 @@ public class ControllerDatabaseForTRM202 {
         this.serviceTRM202 = serviceTRM202;
     }
 
-    @RequestMapping(value = "/range", method = RequestMethod.POST)
-    public List<TableModelTRM202> rangeOfData(ModbusBodyDateRange modbusBodyDateRange){
-        return serviceTRM202.findByDateBetween(modbusBodyDateRange.getFrom(), modbusBodyDateRange.getTo());
+    @RequestMapping(value = "/range", consumes = "application/json", produces = "application/json", method = RequestMethod.POST)
+    public JsonBodyListForTableModelTRM202 rangeOfData(@RequestBody ModbusBodyDateRange modbusBodyDateRange){
+        List<TableModelTRM202> tableModelTRM202List = serviceTRM202.findByDateBetween(modbusBodyDateRange.getFrom(), modbusBodyDateRange.getTo());
+        JsonBodyListForTableModelTRM202 jsonBodyListForTableModelTRM202 = new JsonBodyListForTableModelTRM202();
+        jsonBodyListForTableModelTRM202.setTableModelTRM202List(tableModelTRM202List);
+        return jsonBodyListForTableModelTRM202;
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public Date test(){
-        return new Date();
-    }
+    @RequestMapping(value = "/get-last-row", method = RequestMethod.GET)
+   public TableModelTRM202 getLastRowFromTableModelTRM202(){
+        return serviceTRM202.findLastValueByDate();
+   }
 }

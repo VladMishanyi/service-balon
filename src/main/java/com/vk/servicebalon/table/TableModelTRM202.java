@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -28,9 +29,9 @@ public class TableModelTRM202 implements Serializable, Cloneable {
     @Column(name = "id")
     private long id;
 
-    @Temporal(value = TemporalType.TIMESTAMP)
-    @Column(name = "date")
-    private Date date;
+//    @Temporal(value = TemporalType.TIMESTAMP)
+    @Column(name = "date", columnDefinition = "TIMESTAMP")
+    private LocalDateTime date;
 
     @Column(name = "holdingRegister0")
     private float holdingRegister0 = 0F;
@@ -52,11 +53,11 @@ public class TableModelTRM202 implements Serializable, Cloneable {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

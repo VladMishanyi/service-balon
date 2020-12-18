@@ -1,34 +1,35 @@
 package com.vk.servicebalon.modbus.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ModbusBodyDateRange {
 
-    private Date from;
+    private LocalDateTime from;
 
-    private Date to;
+    private LocalDateTime to;
 
     public ModbusBodyDateRange() {
     }
 
-    public ModbusBodyDateRange(Date from, Date to) {
+    public ModbusBodyDateRange(LocalDateTime from, LocalDateTime to) {
         this.from = from;
         this.to = to;
     }
 
-    public Date getFrom() {
+    public LocalDateTime getFrom() {
         return from;
     }
 
-    public void setFrom(Date from) {
+    public void setFrom(LocalDateTime from) {
         this.from = from;
     }
 
-    public Date getTo() {
+    public LocalDateTime getTo() {
         return to;
     }
 
-    public void setTo(Date to) {
+    public void setTo(LocalDateTime to) {
         this.to = to;
     }
 }

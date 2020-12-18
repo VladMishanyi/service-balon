@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -26,7 +27,7 @@ public class DeviceToTableTRM202 {
     public TableModelTRM202 convert(){
         final TableModelTRM202 tableModelTRM202 = new TableModelTRM202();
         if (Objects.nonNull(deviceModelTRM202)){
-            tableModelTRM202.setDate(new Date());
+            tableModelTRM202.setDate(LocalDateTime.now());
             tableModelTRM202.setHoldingRegister0(deviceModelTRM202.getHoldingRegister0());
             tableModelTRM202.setHoldingRegister1(deviceModelTRM202.getHoldingRegister1());
         }
