@@ -1,5 +1,6 @@
 package com.vk.servicebalon.device;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.serotonin.modbus4j.ModbusLocator;
 import com.serotonin.modbus4j.code.DataType;
 import com.serotonin.modbus4j.code.RegisterRange;
@@ -21,29 +22,42 @@ import java.util.Objects;
 @Component
 public class DeviceModelTRM202 implements Serializable, Cloneable {
 
-    private final int deviceAddress = 16;
-    private final float hysteresisFloat = 1.0F;
-    private final int hysteresisInt = 1;
+    @JsonIgnore
+    private transient final int deviceAddress = 16;
+    @JsonIgnore
+    private transient final float hysteresisFloat = 1.0F;
+    @JsonIgnore
+    private transient final int hysteresisInt = 1;
 
 
     private float holdingRegister0 = 0F;
-    private float oldHoldingRegister0 = 0F;
-    private final ModbusLocator modbusLocator0h = new ModbusLocator(deviceAddress, RegisterRange.HOLDING_REGISTER, 4105, DataType.FOUR_BYTE_FLOAT);
+    @JsonIgnore
+    private transient float oldHoldingRegister0 = 0F;
+    @JsonIgnore
+    private transient final ModbusLocator modbusLocator0h = new ModbusLocator(deviceAddress, RegisterRange.HOLDING_REGISTER, 4105, DataType.FOUR_BYTE_FLOAT);
 
 
     private float holdingRegister1 = 0F;
-    private float oldHoldingRegister1 = 0F;
-    private final ModbusLocator modbusLocator1h = new ModbusLocator(deviceAddress, RegisterRange.HOLDING_REGISTER, 4107, DataType.FOUR_BYTE_FLOAT);
+    @JsonIgnore
+    private transient float oldHoldingRegister1 = 0F;
+    @JsonIgnore
+    private transient final ModbusLocator modbusLocator1h = new ModbusLocator(deviceAddress, RegisterRange.HOLDING_REGISTER, 4107, DataType.FOUR_BYTE_FLOAT);
 
 
-    private float holdingRegister2 = 0F;
-    private float oldHoldingRegister2 = 0F;
-    private final ModbusLocator modbusLocator2h = new ModbusLocator(deviceAddress, RegisterRange.HOLDING_REGISTER, 4113, DataType.FOUR_BYTE_FLOAT);
+    @JsonIgnore
+    private transient float holdingRegister2 = 0F;
+    @JsonIgnore
+    private transient float oldHoldingRegister2 = 0F;
+    @JsonIgnore
+    private transient final ModbusLocator modbusLocator2h = new ModbusLocator(deviceAddress, RegisterRange.HOLDING_REGISTER, 4113, DataType.FOUR_BYTE_FLOAT);
 
 
-    private float holdingRegister3 = 0F;
-    private float oldHoldingRegister3 = 0F;
-    private final ModbusLocator modbusLocator3h = new ModbusLocator(deviceAddress, RegisterRange.HOLDING_REGISTER, 4115, DataType.FOUR_BYTE_FLOAT);
+    @JsonIgnore
+    private transient float holdingRegister3 = 0F;
+    @JsonIgnore
+    private transient float oldHoldingRegister3 = 0F;
+    @JsonIgnore
+    private transient final ModbusLocator modbusLocator3h = new ModbusLocator(deviceAddress, RegisterRange.HOLDING_REGISTER, 4115, DataType.FOUR_BYTE_FLOAT);
 
     public DeviceModelTRM202(){}
 
