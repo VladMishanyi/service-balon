@@ -8,11 +8,12 @@ import com.vk.servicebalon.modbus.entity.ModbusMasterSerialModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
 
-@Component
+@Repository
 @ComponentScan(basePackages = {"com.vk.servicebalon.device","com.vk.servicebalon.modbus"})
 public class RepositoryModbusTRM202Impl implements RepositoryModbusTRM202{
 
