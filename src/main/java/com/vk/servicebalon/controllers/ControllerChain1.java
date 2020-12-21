@@ -38,14 +38,14 @@ public class ControllerChain1 {
         this.chainDatabase = chainDatabase;
     }
 
-    @Scheduled(fixedRate = 1000)
-    private void loopModbus(){
-        if (!chainModbus.isAlive()){
-            chainModbus = new ChainModbus(taskTRM202);
-        }
-    }
+//    @Scheduled(fixedRate = 10000)
+//    private void loopModbus(){
+//        if (!chainModbus.isAlive()){
+//            chainModbus = new ChainModbus(taskTRM202);
+//        }
+//    }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 10000)
     private void loopDatabase(){
         if (!chainDatabase.isAlive()){
             chainDatabase = new ChainDatabase(taskTRM202);

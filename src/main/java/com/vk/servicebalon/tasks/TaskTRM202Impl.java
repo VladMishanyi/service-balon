@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
@@ -83,7 +85,7 @@ public class TaskTRM202Impl implements TaskTRM202{
     }
 
     private OffsetDateTime localDateTomeToOffset(LocalDateTime localDateTime){
-        return OffsetDateTime.parse(localDateTime.toString());
+        return OffsetDateTime.of(localDateTime, OffsetDateTime.now().getOffset());
     }
 
     private OffsetDateTime startOffsetLocalDateTime(){
