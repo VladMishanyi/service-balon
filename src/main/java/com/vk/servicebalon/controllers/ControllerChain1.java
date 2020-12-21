@@ -47,8 +47,8 @@ public class ControllerChain1 {
 
     @Scheduled(fixedRate = 1000)
     private void loopDatabase(){
-        if (!chainModbus.isAlive()){
-            chainModbus = new ChainModbus(taskTRM202);
+        if (!chainDatabase.isAlive()){
+            chainDatabase = new ChainDatabase(taskTRM202);
         }
     }
 }
