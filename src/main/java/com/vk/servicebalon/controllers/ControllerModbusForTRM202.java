@@ -1,6 +1,6 @@
 package com.vk.servicebalon.controllers;
 
-import com.vk.servicebalon.chain.Chain1;
+import com.vk.servicebalon.chain.ChainModbus;
 import com.vk.servicebalon.device.DeviceModelTRM202;
 import com.vk.servicebalon.json.JsonBodyFloat;
 import com.vk.servicebalon.modbus.entity.ModbusBodyQuery;
@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
 
 @RestController
 @RequestMapping(value = "/modbus")
@@ -49,7 +47,7 @@ public class ControllerModbusForTRM202 {
         float val = jsonBodyFloat.getValue();
 
         if ( (val >= 0F) && (val <= 65000F) ){
-            Chain1.modbusBodyQueryQueue.add(new ModbusBodyQuery(1, val));
+            ChainModbus.modbusBodyQueryQueue.add(new ModbusBodyQuery(1, val));
         } else{
             LOGGER.error("/second_ceh_kamera_vulcan1_MPR51/write_steam_pwm  - out of bound length :"+val);
             System.out.println("/second_ceh_kamera_vulcan1_MPR51/write_steam_pwm - out of bound length :"+val);
@@ -61,7 +59,7 @@ public class ControllerModbusForTRM202 {
         float val = jsonBodyFloat.getValue();
 
         if ( (val >= 0F) && (val <= 65000F) ){
-            Chain1.modbusBodyQueryQueue.add(new ModbusBodyQuery(2, val));
+            ChainModbus.modbusBodyQueryQueue.add(new ModbusBodyQuery(2, val));
         } else{
             LOGGER.error("/second_ceh_kamera_vulcan1_MPR51/write_steam_pwm  - out of bound length :"+val);
             System.out.println("/second_ceh_kamera_vulcan1_MPR51/write_steam_pwm - out of bound length :"+val);

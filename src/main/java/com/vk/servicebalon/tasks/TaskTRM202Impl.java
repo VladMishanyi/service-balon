@@ -2,11 +2,17 @@ package com.vk.servicebalon.tasks;
 
 import com.vk.servicebalon.device.DeviceModelTRM202;
 import com.vk.servicebalon.device_to_table.DeviceToTableTRM202;
+import com.vk.servicebalon.json.JsonBodyListForTableModelTRM202;
 import com.vk.servicebalon.service.ServiceTRM202;
 import com.vk.servicebalon.table.TableModelTRM202;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.util.List;
 
 @Component
 @ComponentScan(basePackages = {"com.vk.servicebalon.service", "com.vk.servicebalon.device"})
@@ -41,11 +47,50 @@ public class TaskTRM202Impl implements TaskTRM202{
     }
 
     @Override
-    public void work() {
+    public void readModbusAndWriteToTable() {
         serviceTRM202.readDataFromRegisterAll();
         if (deviceModelTRM202.hysteresis()){
             TableModelTRM202 tableModelTRM202 = deviceToTableTRM202.convert();
-            serviceTRM202.addTabeDevice(tableModelTRM202);
+            serviceTRM202.addTableDevice(tableModelTRM202);
         }
+    }
+
+    @Override
+    public void syncDatabase(){
+        OffsetDateTime dateTimeCurrent = startOffsetLocalDateTime();
+        OffsetDateTime dateTimeEnd = endOffsetLocalDateTime();
+        OffsetDateTime current = dateTimeCurrent;
+        while (current.isBefore(dateTimeEnd)) {
+            OffsetDateTime next = current.plusHours(1);
+            serviceTRM202.addAllTableDevice(readTableModelBetweenDate(current.toLocalDateTime(), next.toLocalDateTime()));
+            current = next;
+        }
+    }
+
+    private LocalDateTime readStartEndpoinDate(){
+        TableModelTRM202 tableModelTRM202 = serviceTRM202.findLastValueByDate();
+        return tableModelTRM202.getDate();
+    }
+
+    private LocalDateTime readEndEndpoinDate(){
+        TableModelTRM202 tableModelTRM202 = serviceTRM202.readJsonTableModelTRM202Last();
+        return tableModelTRM202.getDate();
+    }
+
+    private List<TableModelTRM202> readTableModelBetweenDate(LocalDateTime readStartEndpoinDate, LocalDateTime readEndEndpoinDate){
+        JsonBodyListForTableModelTRM202 jsonBodyListForTableModelTRM202 = serviceTRM202.readJsonTableModelTRM202BetweenDate(readStartEndpoinDate, readEndEndpoinDate);
+        return jsonBodyListForTableModelTRM202.getTableModelTRM202List();
+    }
+
+    private OffsetDateTime localDateTomeToOffset(LocalDateTime localDateTime){
+        return OffsetDateTime.parse(localDateTime.toString());
+    }
+
+    private OffsetDateTime startOffsetLocalDateTime(){
+        return localDateTomeToOffset(readStartEndpoinDate());
+    }
+
+    private OffsetDateTime endOffsetLocalDateTime(){
+        return localDateTomeToOffset(readEndEndpoinDate());
     }
 }

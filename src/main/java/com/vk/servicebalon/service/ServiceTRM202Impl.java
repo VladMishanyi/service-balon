@@ -61,8 +61,13 @@ public class ServiceTRM202Impl implements ServiceTRM202 {
     }
     @Transactional
     @Override
-    public void addTabeDevice(TableModelTRM202 tableModel) {
+    public void addTableDevice(TableModelTRM202 tableModel) {
         repositoryDatabaseTRM202.saveAndFlush(tableModel);
+    }
+    @Transactional
+    @Override
+    public void addAllTableDevice(List<TableModelTRM202> tableModelTRM202List){
+        repositoryDatabaseTRM202.saveAll(tableModelTRM202List);
     }
 
     @Override

@@ -12,5 +12,7 @@ public interface TaskTRM202{
 
     public DeviceToTableTRM202 getDeviceToTableTRM202();
 
-    void work();
+    void readModbusAndWriteToTable();
+
+    void syncDatabase();
 }

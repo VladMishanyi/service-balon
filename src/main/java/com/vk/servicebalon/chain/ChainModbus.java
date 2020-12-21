@@ -12,7 +12,7 @@ import java.util.Queue;
 
 @Component
 @ComponentScan(basePackages = {"com.vk.servicebalon.tasks"})
-public class Chain1 extends Thread{
+public class ChainModbus extends Thread{
 
     private final Logger LOGGER = Logger.getLogger(this.getClass());
 
@@ -21,17 +21,17 @@ public class Chain1 extends Thread{
     private final TaskTRM202 taskTRM202;
 
     @Autowired
-    public Chain1(final TaskTRM202 taskTRM202){
+    public ChainModbus(final TaskTRM202 taskTRM202){
         this.taskTRM202 = taskTRM202;
-//        this.start();
+        this.start();
     }
 
-        @Override
+    @Override
     public void run(){
         while (!this.isInterrupted()){
             try {
 
-                taskTRM202.work();
+                taskTRM202.readModbusAndWriteToTable();
 
                 checkQueryQueue();
 
@@ -52,8 +52,8 @@ public class Chain1 extends Thread{
                     case 1 : taskTRM202.getServiceTRM202().writeDataToRegister0(body.getValueFloat()); break;
                     case 2 : taskTRM202.getServiceTRM202().writeDataToRegister1(body.getValueFloat()); break;
                     default: {
-                        LOGGER.error("Wrong command in Chain1 --"+body.getQueryNumber());
-                        System.out.println("Wrong command in Chain1 --"+body.getQueryNumber());
+                        LOGGER.error("Wrong command in ChainModbus --"+body.getQueryNumber());
+                        System.out.println("Wrong command in ChainModbus --"+body.getQueryNumber());
                         break;
                     }
                 }

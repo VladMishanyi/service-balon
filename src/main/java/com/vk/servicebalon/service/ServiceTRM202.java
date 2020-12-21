@@ -16,7 +16,8 @@ public interface ServiceTRM202 {
 
     List<TableModelTRM202> findByDateBetween (LocalDateTime start, LocalDateTime end);
     TableModelTRM202 findLastValueByDate ();
-    void addTabeDevice(TableModelTRM202 tableModel);
+    void addTableDevice(TableModelTRM202 tableModel);
+    void addAllTableDevice(List<TableModelTRM202> tableModelTRM202List);
 
     DeviceModelTRM202 readDataFromRegisterAll();
     DeviceModelTRM202 readDataFromRegister0();
