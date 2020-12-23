@@ -15,6 +15,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @ComponentScan(basePackages = {"com.vk.servicebalon.service", "com.vk.servicebalon.device"})
@@ -70,7 +71,9 @@ public class TaskTRM202Impl implements TaskTRM202{
     }
 
     private LocalDateTime readStartEndpoinDate(){
+        LocalDateTime localDateTime = LocalDateTime.now().minusYears(1L);
         TableModelTRM202 tableModelTRM202 = serviceTRM202.findLastValueByDate();
+        if (Objects.isNull(tableModelTRM202)) return localDateTime;
         return tableModelTRM202.getDate();
     }
 

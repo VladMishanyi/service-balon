@@ -3,19 +3,19 @@ GET http://192.168.8.149:8080/modbus/read-all
 Accept: application/json
 
 ###
-GET http://localhost:8080/modbus/read-register0
+GET http://192.168.8.149:8080/modbus/read-register0
 Accept: application/json
 
 ###
-GET http://localhost:8080/modbus/read-register1
+GET http://192.168.8.149:8080/modbus/read-register1
 Accept: application/json
 
 ###
-GET http://localhost:8080/database/test
+GET http://192.168.8.149:8080/database/get-last-row
 Accept: application/json
 
 ###
-POST http://localhost:8080/modbus/write-register0
+POST http://192.168.8.149:8080/modbus/write-register0
 Content-Type: application/json
 
 {"valueFloat": 45.1}
@@ -23,7 +23,7 @@ Content-Type: application/json
 ###
 
 ###
-POST http://localhost:8080/modbus/write-register1
+POST http://192.168.8.149:8080/modbus/write-register1
 Content-Type: application/json
 
 {"valueFloat": 63.7}
@@ -31,10 +31,10 @@ Content-Type: application/json
 ###
 
 ###
-POST http://localhost:8080/database/range
+POST http://192.168.8.149:8080/database/range
 Content-Type: application/json
 
-//{"start":"2020-12-16T12:45:22.744+00:00","end":"2020-12-17T12:45:22.744+00:00"}
+{"start":"2020-12-16T12:45:22","end":"2020-12-23T11:45:22"}
 
 ###
 
