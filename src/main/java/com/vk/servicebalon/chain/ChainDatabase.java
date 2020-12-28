@@ -17,7 +17,7 @@ public class ChainDatabase extends Thread{
     @Autowired
     public ChainDatabase(final TaskTRM202 taskTRM202){
         this.taskTRM202 = taskTRM202;
-        this.start();
+//        this.start();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ChainDatabase extends Thread{
 
                 taskTRM202.syncDatabase();
 
-                this.sleep(10000);
+                this.sleep(1000*10);
             }catch (InterruptedException e){
                 String message = e.getMessage();
                 LOGGER.error("Interrupted ChainDatabase thread --"+message);
