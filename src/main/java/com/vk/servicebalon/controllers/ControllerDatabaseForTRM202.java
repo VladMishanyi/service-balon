@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -36,5 +37,10 @@ public class ControllerDatabaseForTRM202 {
     @RequestMapping(value = "/get-last-row", method = RequestMethod.GET)
    public TableModelTRM202 getLastRowFromTableModelTRM202(){
         return serviceTRM202.findLastValueByDate();
+   }
+
+   @RequestMapping(value = "/get-current-date-time", method = RequestMethod.GET)
+   public LocalDateTime getLocalDateTime(){
+        return LocalDateTime.now();
    }
 }

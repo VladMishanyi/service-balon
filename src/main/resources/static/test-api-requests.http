@@ -15,6 +15,10 @@ GET http://192.168.8.149:8080/database/get-last-row
 Accept: application/json
 
 ###
+GET http://192.168.8.149:8080/database/get-current-date-time
+Accept: application/json
+
+###
 POST http://192.168.8.149:8080/modbus/write-register0
 Content-Type: application/json
 
