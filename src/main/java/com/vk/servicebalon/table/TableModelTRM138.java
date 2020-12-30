@@ -1,0 +1,131 @@
+package com.vk.servicebalon.table;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+@Entity
+@Table(name = "trm138")
+public class TableModelTRM138 implements Serializable, Cloneable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
+    private long id;
+
+    @Column(name = "date", columnDefinition = "TIMESTAMP")
+    private LocalDateTime date;
+
+    @Column(name = "inputRegister0")
+    private float inputRegister0 = 0F;
+
+    @Column(name = "inputRegister1")
+    private float inputRegister1 = 0F;
+
+    @Column(name = "inputRegister2")
+    private float inputRegister2 = 0F;
+
+    @Column(name = "inputRegister3")
+    private float inputRegister3 = 0F;
+
+    @Column(name = "inputRegister4")
+    private float inputRegister4 = 0F;
+
+    public TableModelTRM138(){}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public float getInputRegister0() {
+        return inputRegister0;
+    }
+
+    public void setInputRegister0(float inputRegister0) {
+        this.inputRegister0 = inputRegister0;
+    }
+
+    public float getInputRegister1() {
+        return inputRegister1;
+    }
+
+    public void setInputRegister1(float inputRegister1) {
+        this.inputRegister1 = inputRegister1;
+    }
+
+    public float getInputRegister2() {
+        return inputRegister2;
+    }
+
+    public void setInputRegister2(float inputRegister2) {
+        this.inputRegister2 = inputRegister2;
+    }
+
+    public float getInputRegister3() {
+        return inputRegister3;
+    }
+
+    public void setInputRegister3(float inputRegister3) {
+        this.inputRegister3 = inputRegister3;
+    }
+
+    public float getInputRegister4() {
+        return inputRegister4;
+    }
+
+    public void setInputRegister4(float inputRegister4) {
+        this.inputRegister4 = inputRegister4;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TableModelTRM138 that = (TableModelTRM138) o;
+        return id == that.id &&
+                Float.compare(that.inputRegister0, inputRegister0) == 0 &&
+                Float.compare(that.inputRegister1, inputRegister1) == 0 &&
+                Float.compare(that.inputRegister2, inputRegister2) == 0 &&
+                Float.compare(that.inputRegister3, inputRegister3) == 0 &&
+                Float.compare(that.inputRegister4, inputRegister4) == 0 &&
+                date.equals(that.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, inputRegister0, inputRegister1, inputRegister2, inputRegister3, inputRegister4);
+    }
+
+    @Override
+    public String toString() {
+        return "TableModelTRM138{" +
+                "id=" + id +
+                ", date=" + date +
+                ", inputRegister0=" + inputRegister0 +
+                ", inputRegister1=" + inputRegister1 +
+                ", inputRegister2=" + inputRegister2 +
+                ", inputRegister3=" + inputRegister3 +
+                ", inputRegister4=" + inputRegister4 +
+                '}';
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}

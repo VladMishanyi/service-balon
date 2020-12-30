@@ -38,7 +38,7 @@ public class ModbusFloatImpl extends RootModbusImpl<Float> implements ModbusFloa
             final boolean enableBatch,
             final ModbusLocator... modbusLocator){
 
-        List<Float> val = readDataFromModBus(modbusMasterTcpModel, adr, batch, enableBatch, modbusLocator);
+        List<Float> val = super.readDataFromModBus(modbusMasterTcpModel, adr, batch, enableBatch, modbusLocator);
         return val.stream().map( e -> FloatCut.cut(pow, e)).collect(Collectors.toList());
     }
 
