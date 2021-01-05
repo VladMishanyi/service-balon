@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DeviceModelTRM138{
-    private final int deviceAddress = 80;//80-88 reserved for this device
+    private final int deviceAddress = 16;//16-24 reserved for this device
     private final float hysteresisFloat = 1.0F;
     private final int hysteresisInt = 1;
 
