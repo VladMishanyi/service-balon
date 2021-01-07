@@ -7,17 +7,17 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "trm138")
-public class TableModelTRM138 implements Serializable, Cloneable {
+public class TableModelTRM138 extends TableModel {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id")
-    private long id;
-
-    @Column(name = "date", columnDefinition = "TIMESTAMP")
-    private LocalDateTime date;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    @Column(name = "id")
+//    private long id;
+//
+//    @Column(name = "date", columnDefinition = "TIMESTAMP")
+//    private LocalDateTime date;
 
     @Column(name = "inputRegister0")
     private float inputRegister0 = 0F;
@@ -36,21 +36,21 @@ public class TableModelTRM138 implements Serializable, Cloneable {
 
     public TableModelTRM138(){}
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
+//
+//    public LocalDateTime getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(LocalDateTime date) {
+//        this.date = date;
+//    }
 
     public float getInputRegister0() {
         return inputRegister0;
@@ -93,29 +93,28 @@ public class TableModelTRM138 implements Serializable, Cloneable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TableModelTRM138 that = (TableModelTRM138) o;
-        return id == that.id &&
-                Float.compare(that.inputRegister0, inputRegister0) == 0 &&
-                Float.compare(that.inputRegister1, inputRegister1) == 0 &&
-                Float.compare(that.inputRegister2, inputRegister2) == 0 &&
-                Float.compare(that.inputRegister3, inputRegister3) == 0 &&
-                Float.compare(that.inputRegister4, inputRegister4) == 0 &&
-                date.equals(that.date);
+    public boolean equals(Object object) {
+        boolean result = super.equals(object);
+        if (result){
+            TableModelTRM138 that = (TableModelTRM138) object;
+            result = Float.compare(that.inputRegister0, inputRegister0) == 0 &&
+                    Float.compare(that.inputRegister1, inputRegister1) == 0 &&
+                    Float.compare(that.inputRegister2, inputRegister2) == 0 &&
+                    Float.compare(that.inputRegister3, inputRegister3) == 0 &&
+                    Float.compare(that.inputRegister4, inputRegister4) == 0;
+        }
+        return result;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, inputRegister0, inputRegister1, inputRegister2, inputRegister3, inputRegister4);
+        return Objects.hash(this.getId(), this.getDate(), inputRegister0, inputRegister1, inputRegister2, inputRegister3, inputRegister4);
     }
 
     @Override
     public String toString() {
         return "TableModelTRM138{" +
-                "id=" + id +
-                ", date=" + date +
+                super.toString()+
                 ", inputRegister0=" + inputRegister0 +
                 ", inputRegister1=" + inputRegister1 +
                 ", inputRegister2=" + inputRegister2 +
@@ -125,7 +124,7 @@ public class TableModelTRM138 implements Serializable, Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public TableModelTRM138 clone() {
+        return (TableModelTRM138) super.clone();
     }
 }

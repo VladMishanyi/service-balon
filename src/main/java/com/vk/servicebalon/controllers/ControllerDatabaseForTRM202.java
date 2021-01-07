@@ -30,7 +30,7 @@ public class ControllerDatabaseForTRM202 {
     public JsonBodyListForTableModelTRM202 rangeOfData(@RequestBody ModbusBodyDateRange modbusBodyDateRange){
         List<TableModelTRM202> tableModelTRM202List = serviceTRM202.findByDateBetween(modbusBodyDateRange.getFrom(), modbusBodyDateRange.getTo());
         JsonBodyListForTableModelTRM202 jsonBodyListForTableModelTRM202 = new JsonBodyListForTableModelTRM202();
-        jsonBodyListForTableModelTRM202.setTableModelTRM202List(tableModelTRM202List);
+        jsonBodyListForTableModelTRM202.setTableModelList(tableModelTRM202List);
         return jsonBodyListForTableModelTRM202;
     }
 

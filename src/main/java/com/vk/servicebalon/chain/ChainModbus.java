@@ -1,6 +1,7 @@
 package com.vk.servicebalon.chain;
 
 import com.vk.servicebalon.modbus.entity.ModbusBodyQuery;
+import com.vk.servicebalon.tasks.TaskTRM138;
 import com.vk.servicebalon.tasks.TaskTRM202;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,12 @@ public class ChainModbus extends Thread{
 
     private final TaskTRM202 taskTRM202;
 
+    private final TaskTRM138 taskTRM138;
+
     @Autowired
-    public ChainModbus(final TaskTRM202 taskTRM202){
+    public ChainModbus(final TaskTRM202 taskTRM202, final TaskTRM138 taskTRM138){
         this.taskTRM202 = taskTRM202;
+        this.taskTRM138 = taskTRM138;
         this.start();
     }
 
@@ -33,13 +37,15 @@ public class ChainModbus extends Thread{
 
                 taskTRM202.readModbusAndWriteToTable();
 
+                taskTRM138.readModbusAndWriteToTable();
+
                 checkQueryQueue();
 
                 this.sleep(1000);
             }catch (InterruptedException e){
                 String message = e.getMessage();
-                LOGGER.error("Interrupted chain1 thread --"+message);
-                System.out.println("Interrupted chain1 thread --"+message);
+                LOGGER.error("Interrupted"+this.getClass()+"thread --"+message);
+                System.out.println("Interrupted"+this.getClass()+"thread --"+message);
             }
         }
     }

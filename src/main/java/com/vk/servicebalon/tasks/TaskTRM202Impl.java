@@ -84,7 +84,7 @@ public class TaskTRM202Impl implements TaskTRM202{
 
     private List<TableModelTRM202> readTableModelBetweenDate(LocalDateTime readStartEndpoinDate, LocalDateTime readEndEndpoinDate){
         JsonBodyListForTableModelTRM202 jsonBodyListForTableModelTRM202 = serviceTRM202.readJsonTableModelTRM202BetweenDate(readStartEndpoinDate, readEndEndpoinDate);
-        return jsonBodyListForTableModelTRM202.getTableModelTRM202List();
+        return jsonBodyListForTableModelTRM202.getTableModelList();
     }
 
     private OffsetDateTime localDateTomeToOffset(LocalDateTime localDateTime){
