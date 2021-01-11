@@ -1,0 +1,17 @@
+
+###
+GET http://192.168.8.149:8080/database/get-last-row
+Accept: application/json
+
+###
+GET http://192.168.8.149:8080/database/get-current-date-time
+Accept: application/json
+
+###
+POST http://192.168.8.149:8080/database/range
+Content-Type: application/json
+
+{"from":"2020-12-16T12:45:22.187","to":"2021-01-11T13:38:10.187"}
+
+###
+

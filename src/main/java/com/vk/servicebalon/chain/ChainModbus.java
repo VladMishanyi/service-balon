@@ -35,7 +35,7 @@ public class ChainModbus extends Thread{
         while (!this.isInterrupted()){
             try {
 
-                taskTRM202.readModbusAndWriteToTable();
+//                taskTRM202.readModbusAndWriteToTable();
 
                 taskTRM138.readModbusAndWriteToTable();
 
