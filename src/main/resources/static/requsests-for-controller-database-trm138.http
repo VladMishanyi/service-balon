@@ -1,14 +1,14 @@
 
 ###
-GET http://localhost:8080/database/trm138/get-last-row
+GET http://192.168.8.149:8080/database/trm138/get-last-row
 Accept: application/json
 
 ###
-GET http://localhost:8080/database/trm138/get-current-date-time
+GET http://192.168.8.149:8080/database/trm138/get-current-date-time
 Accept: application/json
 
 ###
-POST http://localhost/database/trm138/range
+POST http://192.168.8.149:8080/database/trm138/range
 Content-Type: application/json
 
 {"from":"2020-12-16T12:45:22.187","to":"2021-01-11T13:38:10.187"}
