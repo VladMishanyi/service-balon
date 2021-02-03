@@ -1,6 +1,7 @@
 package com.vk.servicebalon.controllers;
 
 import com.vk.servicebalon.chain.ChainModbus;
+import com.vk.servicebalon.device.DeviceAirSensor;
 import com.vk.servicebalon.device.DeviceModelTRM138;
 import com.vk.servicebalon.device.DeviceModelTRM202;
 import com.vk.servicebalon.json.JsonBodyFloat;
@@ -9,9 +10,10 @@ import com.vk.servicebalon.service.ServiceTRM138;
 import com.vk.servicebalon.service.ServiceTRM202;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/modbus/trm138")
@@ -32,5 +34,16 @@ public class ControllerModbusForTRM138 {
     @RequestMapping(value = "/read-all",method = RequestMethod.GET)
     public DeviceModelTRM138 readRegisterAll(){
         return deviceModel;
+    }
+
+//    @RequestMapping(value = "/sensor", method = RequestMethod.POST)
+//    public void getSensorValue(@RequestBody Map<String, Object> json){
+//        System.out.println(json);
+//    }
+
+    @RequestMapping(value = "/sensor", consumes = "application/json", produces = "application/json", method = RequestMethod.POST)
+    public void getSensorValueJson(@RequestBody DeviceAirSensor json){
+        System.out.println(json.toString());
+        Arrays.stream(json.getSensordatavalues()).forEach(System.out::println);
     }
 }

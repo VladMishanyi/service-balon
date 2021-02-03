@@ -27,7 +27,7 @@ public class ChainDatabase extends Thread{
 
                 taskTRM202.syncDatabase();
 
-                this.sleep(1000*10);
+                this.sleep(1000*60);
             }catch (InterruptedException e){
                 String message = e.getMessage();
                 LOGGER.error("Interrupted ChainDatabase thread --"+message);

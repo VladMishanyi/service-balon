@@ -22,6 +22,8 @@ public class TaskTRM138Impl implements TaskTRM138{
 
     private final DeviceToTableTRM138 deviceToTableTRM138;
 
+    private static int counter = 0;
+
     @Autowired
     public TaskTRM138Impl(final ServiceTRM138 serviceTRM138,
                           final DeviceModelTRM138 deviceModelTRM138,
@@ -49,9 +51,12 @@ public class TaskTRM138Impl implements TaskTRM138{
     @Override
     public void readModbusAndWriteToTable() {
         serviceTRM138.readDataFromRegisterAll();
-        if (deviceModelTRM138.hysteresis()){
+        counter++;
+        if (deviceModelTRM138.hysteresis() && (counter >= 60)){
             TableModelTRM138 tableModelTRM138 = deviceToTableTRM138.convert();
             serviceTRM138.addTableDevice(tableModelTRM138);
+            counter = 0;
         }
+        System.out.println("Counter :"+counter);
     }
 }
