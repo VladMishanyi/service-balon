@@ -1,6 +1,7 @@
 package com.vk.servicebalon.table;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +16,7 @@ public abstract class TableModel implements Serializable, Cloneable{
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger LOGGER = Logger.getLogger(TableModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TableModel.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

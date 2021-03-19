@@ -7,7 +7,8 @@ import com.serotonin.modbus4j.ModbusMaster;
 import com.serotonin.modbus4j.exception.ModbusInitException;
 import com.vk.servicebalon.modbus.entity.ModbusMasterSerialModel;
 import com.vk.servicebalon.modbus.entity.ModbusMasterTcpModel;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public abstract class RootModbusImpl<E extends Number> implements RootModbus<E> {
 
-    private Logger LOGGER = Logger.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     private boolean useBorders = false;
 

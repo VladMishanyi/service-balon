@@ -8,7 +8,8 @@ import com.vk.servicebalon.json.JsonBodyFloat;
 import com.vk.servicebalon.modbus.entity.ModbusBodyQuery;
 import com.vk.servicebalon.service.ServiceTRM138;
 import com.vk.servicebalon.service.ServiceTRM202;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ import java.util.Map;
 @RequestMapping(value = "/modbus/trm138")
 public class ControllerModbusForTRM138 {
 
-    private final Logger LOGGER = Logger.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     private final ServiceTRM138 service;
 

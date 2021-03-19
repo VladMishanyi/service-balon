@@ -1,7 +1,8 @@
 package com.vk.servicebalon.chain;
 
 import com.vk.servicebalon.tasks.TaskTRM202;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 @ComponentScan(basePackages = {"com.vk.servicebalon.tasks"})
 public class ChainDatabase extends Thread{
 
-    private final Logger LOGGER = Logger.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     private final TaskTRM202 taskTRM202;
 

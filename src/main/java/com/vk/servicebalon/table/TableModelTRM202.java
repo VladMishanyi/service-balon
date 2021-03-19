@@ -1,19 +1,6 @@
 package com.vk.servicebalon.table;
 
-import com.serotonin.modbus4j.ModbusLocator;
-import com.serotonin.modbus4j.code.DataType;
-import com.serotonin.modbus4j.code.RegisterRange;
-import com.vk.servicebalon.lib.HysComparator;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
