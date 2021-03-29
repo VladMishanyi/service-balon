@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource(value = "classpath:raspberry-balon.properties")
+@PropertySource(value = "classpath:application.properties")
 public class DeviceModelRaspberry {
 
     @Value("${raspberry.ip}")
